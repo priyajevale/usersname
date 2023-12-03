@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details Form</title>
+</head>
+<body>
+
+    <form id="userForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var userId = generateUniqueId(); // Assume you have a function to generate unique IDs
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            var email = document.getElementById('email').value;
+
+            var userDetails = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email
+            };
+
+            var userDetailsJSON = JSON.stringify(userDetails);
+
+            // Store the JSON string in local storage with a unique key (userId)
+            localStorage.setItem(userId, userDetailsJSON);
+
+            alert('User details stored successfully!');
+        });
+
+        // Function to generate a simple unique ID (you may want to use a more robust solution)
+        function generateUniqueId() {
+            return 'user_' + Math.random().toString(36).substr(2, 9);
+        }
+    </script>
+
+</body>
+</html
